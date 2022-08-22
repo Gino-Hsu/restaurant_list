@@ -78,6 +78,30 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.error-text {
+  margin: auto;
+  max-width: 680px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: scale-up 1s forwards;
+  font-size: 2rem;
+  color: #9b4b4b;
+}
+
+.error-text > i {
+  margin-right: 1rem;
+}
+
+@keyframes scale-up {
+  from {
+    transform: scale(0);
+  } to {
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 992px) {
 
   .card img {

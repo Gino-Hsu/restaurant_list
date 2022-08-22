@@ -12,9 +12,27 @@ app.set('view engine', 'handlebars')
 // setting static files
 app.use(express.static('public'))
 
+// routes setting
 app.get('/', (req, res) => {
   res.render('index', {restaurant: restaurantList.results})
 })
+
+// search for name or category
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword.trim()
+  const restaurants = restaurantList.results.filter(res => {
+    return res.name.toLowerCase().includes(keyword.toLocaleLowerCase()) || res.category.includes(keyword)
+  })
+  // can't find any restaurant by keyword
+  if (restaurants.length === 0 && keyword.length !== 0) {
+    res.render('error', {keyword})
+    return
+  } else {
+    res.render('index', {restaurant: restaurants, keyword})
+  }
+})
+
+// render show page
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const resId = req.params.restaurant_id
   const restaurant = restaurantList.results.find(res => res.id.toString() === resId)
