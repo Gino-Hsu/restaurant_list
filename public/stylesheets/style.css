@@ -35,6 +35,15 @@ header {
   color: #9b4b4b;
 }
 
+select.form-control {
+  color: #aaaaaa;
+  font-size: 1rem;
+}
+
+select.form-control:hover {
+  cursor: pointer;
+}
+
 .form-control::placeholder {
   color: #aaaaaa;
   font-size: 0.8rem;
@@ -52,6 +61,11 @@ header {
 
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(0.95);
 }
 
 .card img {
