@@ -21,18 +21,13 @@ app.get('/', (req, res) => {
 app.get('/search', (req, res) => {
   const ratingSelect = req.query.rating
   const keyword = req.query.keyword.trim()
+  const rating = req.query.rating
   const restaurants = restaurantList.results.filter(res => {
     if (res.rating >= Number(ratingSelect)) {
       return res.name.toLowerCase().includes(keyword.toLocaleLowerCase()) || res.category.includes(keyword)
     }
   })
-  // can't find any restaurant by keyword
-  if (restaurants.length === 0 && keyword.length !== 0) {
-    res.render('error', {keyword})
-    return
-  } else {
-    res.render('index', {restaurant: restaurants, keyword})
-  }
+  res.render('index', {restaurant: restaurants, keyword, rating})
 })
 
 // render show page
