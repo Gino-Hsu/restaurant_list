@@ -27,7 +27,12 @@ app.get('/search', (req, res) => {
       return res.name.toLowerCase().includes(keyword.toLocaleLowerCase()) || res.category.includes(keyword)
     }
   })
-  res.render('index', {restaurant: restaurants, keyword, rating})
+  // can't find any restaurant by keyword
+  if (restaurants.length === 0 && keyword.length !== 0) {
+    res.render('error', {keyword, rating})
+  } else {
+    res.render('index', {restaurant: restaurants, keyword, rating})
+  }
 })
 
 // render show page
